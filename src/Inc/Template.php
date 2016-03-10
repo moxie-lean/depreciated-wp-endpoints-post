@@ -8,10 +8,11 @@ class Template
 {
 	/**
 	 * Get the template
-	 * @param \WP_Post $post The post
 	 * @return string
 	 */
-	public static function get( $post ) {
+	public static function get() {
+		$post = get_post();
+
 		if ( 'page' === $post->post_type ) {
 			return basename( get_page_template(), '.php' );
 		}

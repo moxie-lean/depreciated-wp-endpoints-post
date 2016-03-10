@@ -1,5 +1,7 @@
 <?php namespace Leean\Endpoints;
 
+use Leean\Endpoints\Inc\Content;
+
 /**
  * Class to provide activation point for our endpoints.
  */
@@ -62,14 +64,19 @@ class View
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
-				'template' => Inc\Template::get( get_post() ),
-				'content' => [ ],
+				'template' => Inc\Template::get(),
+				'content' => Inc\Content::get(),
 				'meta' => [ ],
 			];
 
 			wp_reset_postdata();
 
-			return $data;
+			return apply_filters(
+				'ln_endpoints_data',
+				$data,
+				self::ENDPOINT,
+				get_post()
+			);
 		}
 
 		return new \WP_Error( 'ln_slug_not_found', 'Nothing found for this slug', [ 'status' => 404 ] );
