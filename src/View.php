@@ -62,9 +62,9 @@ class View
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
-				'template' => Inc\Template::get_template( get_post() ),
-				'content' => [],
-				'meta' => [],
+				'template' => Inc\Template::get( get_post() ),
+				'content' => [ ],
+				'meta' => [ ],
 			];
 
 			wp_reset_postdata();

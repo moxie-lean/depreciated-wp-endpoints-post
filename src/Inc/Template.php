@@ -1,8 +1,17 @@
 <?php namespace Leean\Endpoints\Inc;
 
+/**
+ * Class Template
+ * @package Leean\Endpoints\Inc
+ */
 class Template
 {
-	public static function get_template( $post ) {
+	/**
+	 * Get the template
+	 * @param \WP_Post $post The post
+	 * @return string
+	 */
+	public static function get( $post ) {
 		if ( 'page' === $post->post_type ) {
 			return basename( get_page_template(), '.php' );
 		}
