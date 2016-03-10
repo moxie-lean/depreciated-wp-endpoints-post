@@ -79,7 +79,7 @@ class View
 				'ln_endpoints_data',
 				$data,
 				self::ENDPOINT,
-				$post
+				$post->ID
 			);
 		}
 

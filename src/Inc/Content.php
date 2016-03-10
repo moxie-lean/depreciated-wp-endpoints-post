@@ -49,8 +49,8 @@ class Content
 					'ln_endpoints_acf',
 					$field['value'],
 					View::ENDPOINT,
-					$field,
-					$post_id
+					$post_id,
+					$field
 				);
 		}
 	}
@@ -60,7 +60,7 @@ class Content
 	 */
 	public static function acf_customize() {
 		// Get all data for posts only when the return format is 'id'.
-		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $field, $post_id ) {
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
 			if ( ! ('post_object' === $field['type'] && 'id' === $field['return_format']) ) {
 				return $value;
 			}
@@ -77,7 +77,7 @@ class Content
 		}, 10, 4 );
 
 		// Get the image details for the given size (only when return format is 'id').
-		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $field, $post_id ) {
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
 			if ( ! ('image' === $field['type'] && 'id' === $field['return_format']) ) {
 				return $value;
 			}
@@ -86,8 +86,8 @@ class Content
 				'ln_endpoints_acf_image_size',
 				false,
 				View::ENDPOINT,
-				$field,
-				$post_id
+				$post_id,
+				$field
 			);
 
 			if ( ! $size ) {
