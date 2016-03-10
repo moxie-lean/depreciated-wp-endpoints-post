@@ -2,12 +2,14 @@
 
 /**
  * Class Template
+ *
  * @package Leean\Endpoints\Inc
  */
 class Template
 {
 	/**
 	 * Get the template
+	 *
 	 * @return string
 	 */
 	public static function get() {

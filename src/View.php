@@ -51,7 +51,7 @@ class View
 				'ln_endpoints_query_args',
 				[
 					'name' => $slug,
-					'post_type' => 'any'
+					'post_type' => 'any',
 				],
 				self::ENDPOINT,
 				$request
@@ -66,7 +66,7 @@ class View
 				'slug' => $slug,
 				'template' => Inc\Template::get(),
 				'content' => Inc\Content::get(),
-				'meta' => [ ],
+				'meta' => [],
 			];
 
 			wp_reset_postdata();
