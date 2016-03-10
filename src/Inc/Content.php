@@ -50,7 +50,7 @@ class Content
 					$field['value'],
 					View::ENDPOINT,
 					$field,
-					get_post()
+					$post_id
 				);
 		}
 	}
@@ -60,19 +60,52 @@ class Content
 	 */
 	public static function acf_customize() {
 		// Get all data for posts only when the return format is 'id'.
-		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $field, $post ) {
-			if ( 'post_object' === $field['type'] && 'id' === $field['return_format'] ) {
-				if ( is_array( $field['value'] ) ) {
-					$data = [];
-					foreach ( $field['value'] as $post_id ) {
-						$data[] = self::get( $post_id );
-					}
-					return $data;
-				} else {
-					return self::get( $field['value'] );
-				}
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $field, $post_id ) {
+			if ( ! ('post_object' === $field['type'] && 'id' === $field['return_format']) ) {
+				return $value;
 			}
-			return $value;
+
+			if ( is_array( $field['value'] ) ) {
+				$data = [];
+				foreach ( $field['value'] as $post_id ) {
+					$data[] = self::get( $post_id );
+				}
+				return $data;
+			} else {
+				return self::get( $field['value'] );
+			}
+		}, 10, 4 );
+
+		// Get the image details for the given size (only when return format is 'id').
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $field, $post_id ) {
+			if ( ! ('image' === $field['type'] && 'id' === $field['return_format']) ) {
+				return $value;
+			}
+
+			$size = apply_filters(
+				'ln_endpoints_acf_image_size',
+				false,
+				View::ENDPOINT,
+				$field,
+				$post_id
+			);
+
+			if ( ! $size ) {
+				return $value;
+			}
+
+			$src = wp_get_attachment_image_src( $value, $size );
+
+			if ( ! $src ) {
+				return $value;
+			}
+
+			return [
+				'src' 		=> $src[0],
+				'width'		=> $src[1],
+				'height'	=> $src[2],
+				'alt'		=> get_post_meta( $value, '_wp_attachment_image_alt', true ),
+			];
 		}, 10, 4 );
 	}
 }
