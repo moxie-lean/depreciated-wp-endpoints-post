@@ -34,6 +34,8 @@ class View
 				]
 			);
 		} );
+
+		Inc\Content::acf_customize();
 	}
 
 	/**
@@ -61,11 +63,13 @@ class View
 		if ( $query->have_posts() ) {
 			$query->the_post();
 
+			$post = get_post();
+
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
 				'template' => Inc\Template::get(),
-				'content' => Inc\Content::get(),
+				'content' => Inc\Content::get( $post ),
 				'meta' => [],
 			];
 
@@ -75,7 +79,7 @@ class View
 				'ln_endpoints_data',
 				$data,
 				self::ENDPOINT,
-				get_post()
+				$post
 			);
 		}
 
