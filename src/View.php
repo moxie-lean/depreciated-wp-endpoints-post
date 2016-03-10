@@ -68,7 +68,7 @@ class View
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
-				'template' => Inc\Template::get(),
+				'template' => Inc\Template::get( $post ),
 				'content' => Inc\Content::get( $post ),
 				'meta' => [],
 			];
