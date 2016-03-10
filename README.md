@@ -1,2 +1,2 @@
 # wp-endpoints
-Generic but customisable endpoints to expose our content via WP-API
+Generic but customisable view endpoint to expose our content via WP-API
