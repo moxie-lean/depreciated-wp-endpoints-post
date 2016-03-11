@@ -19,9 +19,9 @@ class Template
 		$type = $post->post_type;
 		if ( 'page' === $type ) {
 			$template_slug = get_page_template_slug( $post->ID );
-			$type = empty( $template_slug )
-				? 'default'
-				: basename( $template_slug, '.php' );
+			if ( ! empty( $template_slug ) ) {
+				$type .= '-' . wp_basename( $template_slug, '.php' );
+			}
 		}
 		return $type;
 	}
