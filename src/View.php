@@ -1,6 +1,7 @@
 <?php namespace Leean\Endpoints;
 
 use Leean\Endpoints\Inc\Content;
+use Leean\Endpoints\Inc\Template;
 
 /**
  * Class to provide activation point for our endpoints.
@@ -68,9 +69,8 @@ class View
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
-				'template' => Inc\Template::get( $post ),
-				'type' => $post->post_type,
-				'content' => Inc\Content::get( $post ),
+				'type' => Template::get( $post ),
+				'content' => Content::get( $post ),
 				'meta' => [],
 			];
 
