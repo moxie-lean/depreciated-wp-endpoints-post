@@ -69,6 +69,7 @@ class View
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
 				'template' => Inc\Template::get( $post ),
+				'type' => $post->post_type,
 				'content' => Inc\Content::get( $post ),
 				'meta' => [],
 			];
