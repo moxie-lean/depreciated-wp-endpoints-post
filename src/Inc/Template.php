@@ -8,19 +8,24 @@
 class Template
 {
 	/**
-	 * Get the template
+	 * Returns the template used on a page:
+	 *
+	 * - Default for the default page template
+	 * - Template Slug
+	 * - Empty string if the post is not a page.
 	 *
 	 * @param Int|\WP_Post $post The post
 	 * @return string
 	 */
 	public static function get( $post ) {
 		$post = is_a( $post, 'WP_Post' ) ? $post : get_post( $post );
-
+		$template = '';
 		if ( 'page' === $post->post_type ) {
 			$template_slug = get_page_template_slug( $post->ID );
-			return $template_slug ? basename( $template_slug, '.php' ) : 'page';
+			$template = empty( $template_slug )
+				? 'default'
+				: basename( $template_slug, '.php' );
 		}
-
-		return $post->post_type;
+		return $template;
 	}
 }
