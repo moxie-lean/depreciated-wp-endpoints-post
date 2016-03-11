@@ -1,5 +1,6 @@
 # WP Endpoints: View
-Generic but customisable view endpoint to expose our content via WP-API. This extension will create an endpoint (at ```/wp-json/leean/v1/view``` by default) which returns all the data required by a front-end app to render a view.
+
+> Generic but customisable view endpoint to expose our content via WP-API. This extension will create an endpoint (at ```/wp-json/leean/v1/view``` by default) which returns all the data required by a front-end app to render a view.
 
 The endpoint takes a slug parameter (e.g. ```/wp-json/leean/v1/view?slug=sample-page```) and returns the following data for a single post:
 
