@@ -1,6 +1,6 @@
 <?php namespace Leean\Endpoints\Inc;
 
-use Leean\Endpoints\View;
+use Leean\Endpoints\Post;
 
 /**
  * Class Content
@@ -48,7 +48,7 @@ class Content
 				apply_filters(
 					'ln_endpoints_acf',
 					$field['value'],
-					View::ENDPOINT,
+					Post::ENDPOINT,
 					$post_id,
 					$field
 				);
@@ -85,7 +85,7 @@ class Content
 			$size = apply_filters(
 				'ln_endpoints_acf_image_size',
 				false,
-				View::ENDPOINT,
+				Post::ENDPOINT,
 				$post_id,
 				$field
 			);

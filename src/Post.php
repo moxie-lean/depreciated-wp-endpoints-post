@@ -6,9 +6,9 @@ use Leean\Endpoints\Inc\Template;
 /**
  * Class to provide activation point for our endpoints.
  */
-class View
+class Post
 {
-	const ENDPOINT = '/view';
+	const ENDPOINT = '/post';
 
 	/**
 	 * Init.

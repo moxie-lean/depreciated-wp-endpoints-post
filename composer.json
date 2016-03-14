@@ -1,8 +1,8 @@
 {
-  "name": "moxie-leean/wp-endpoints-view",
-  "description": "Generic but customisable view endpoint to expose our content via WP-API",
+  "name": "moxie-leean/wp-endpoints-post",
+  "description": "Generic but customisable post endpoint to expose post content via WP-API",
   "keywords": ["wordpress", "api"],
-  "homepage": "https://github.com/moxie-leean/wp-endpoints",
+  "homepage": "https://github.com/moxie-leean/wp-endpoints-post",
   "type": "library",
   "license": "MIT",
   "authors": [
