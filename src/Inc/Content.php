@@ -61,7 +61,7 @@ class Content
 	public static function acf_customize() {
 		// Get all data for posts only when the return format is 'id'.
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('post_object' === $field['type'] && 'id' === $field['return_format']) ) {
+			if ( ! ( 'post_object' === $field['type'] && 'id' === $field['return_format'] ) ) {
 				return $value;
 			}
 
@@ -78,7 +78,7 @@ class Content
 
 		// Get the image details for the given size (only when return format is 'id').
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('image' === $field['type'] && 'id' === $field['return_format']) ) {
+			if ( ! ( 'image' === $field['type'] && 'id' === $field['return_format']) ) {
 				return $value;
 			}
 
@@ -87,14 +87,14 @@ class Content
 
 		// Do the same for images in repeaters.
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('repeater' === $field['type'] && is_array($value) && 0 <= count($value) ) ) {
+			if ( ! ( 'repeater' === $field['type'] && is_array( $value ) && 0 <= count( $value ) ) ) {
 				return $value;
 			}
 
 			foreach ( $field['sub_fields'] as $sub_field ) {
 				if ( 'image' === $sub_field['type'] && 'id' === $sub_field['return_format'] ) {
 					foreach ( $value as $id => $item ) {
-						$value[$id][ $sub_field['name'] ] =
+						$value[ $id ][ $sub_field['name'] ] =
 							self::customize_image( $item[ $sub_field['name'] ], $post_id, $field, $sub_field['name'] );
 					}
 				}
@@ -105,7 +105,7 @@ class Content
 
 		// Provide a filter to output repeater as object instead of array if there's just 1 item.
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('repeater' === $field['type'] && is_array($value) && 1 === count($value) ) ) {
+			if ( ! ( 'repeater' === $field['type'] && is_array( $value ) && 1 === count( $value ) ) ) {
 				return $value;
 			}
 
