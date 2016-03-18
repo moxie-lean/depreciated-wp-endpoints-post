@@ -61,7 +61,7 @@ class Content
 	public static function acf_customize() {
 		// Get all data for posts only when the return format is 'id'.
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('post_object' === $field['type'] && 'id' === $field['return_format']) ) {
+			if ( ! ( 'post_object' === $field['type'] && 'id' === $field['return_format'] ) ) {
 				return $value;
 			}
 
@@ -78,39 +78,34 @@ class Content
 
 		// Get the image details for the given size (only when return format is 'id').
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('image' === $field['type'] && 'id' === $field['return_format']) ) {
+			if ( ! ( 'image' === $field['type'] && 'id' === $field['return_format']) ) {
 				return $value;
 			}
 
-			$size = apply_filters(
-				'ln_endpoints_acf_image_size',
-				false,
-				Post::ENDPOINT,
-				$post_id,
-				$field
-			);
-
-			if ( ! $size ) {
-				return $value;
-			}
-
-			$src = wp_get_attachment_image_src( $value, $size );
-
-			if ( ! $src ) {
-				return $value;
-			}
-
-			return [
-				'src' 		=> $src[0],
-				'width'		=> $src[1],
-				'height'	=> $src[2],
-				'alt'		=> get_post_meta( $value, '_wp_attachment_image_alt', true ),
-			];
+			return self::customize_image( $value, $post_id, $field );
 		}, 10, 4 );
+
+		// Do the same for images in repeaters.
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
+			if ( ! ( 'repeater' === $field['type'] && is_array( $value ) && 0 <= count( $value ) ) ) {
+				return $value;
+			}
+
+			foreach ( $field['sub_fields'] as $sub_field ) {
+				if ( 'image' === $sub_field['type'] && 'id' === $sub_field['return_format'] ) {
+					foreach ( $value as $id => $item ) {
+						$value[ $id ][ $sub_field['name'] ] =
+							self::customize_image( $item[ $sub_field['name'] ], $post_id, $field, $sub_field['name'] );
+					}
+				}
+			}
+
+			return $value;
+		}, 8, 4 );
 
 		// Provide a filter to output repeater as object instead of array if there's just 1 item.
 		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
-			if ( ! ('repeater' === $field['type'] && is_array($value) && 1 === count($value) ) ) {
+			if ( ! ( 'repeater' === $field['type'] && is_array( $value ) && 1 === count( $value ) ) ) {
 				return $value;
 			}
 
@@ -124,5 +119,42 @@ class Content
 
 			return $as_array ? $value : $value[0];
 		}, 10, 4 );
+	}
+
+	/**
+	 * Do the image size filter.
+	 *
+	 * @param int    $attachment_id Image's id
+	 * @param int    $post_id		Post id
+	 * @param string $field			Field
+	 * @param bool   $sub_field		Sub field (only if it's a repeater)
+	 * @return array
+	 */
+	private static function customize_image( $attachment_id, $post_id, $field, $sub_field = false ) {
+		$size = apply_filters(
+			'ln_endpoints_acf_image_size',
+			false,
+			Post::ENDPOINT,
+			$post_id,
+			$field,
+			$sub_field
+		);
+
+		if ( ! $size ) {
+			return $attachment_id;
+		}
+
+		$src = wp_get_attachment_image_src( $attachment_id, $size );
+
+		if ( ! $src ) {
+			return $attachment_id;
+		}
+
+		return [
+			'src' 		=> $src[0],
+			'width'		=> $src[1],
+			'height'	=> $src[2],
+			'alt'		=> get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
+		];
 	}
 }
