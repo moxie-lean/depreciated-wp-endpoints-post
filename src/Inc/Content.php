@@ -107,5 +107,22 @@ class Content
 				'alt'		=> get_post_meta( $value, '_wp_attachment_image_alt', true ),
 			];
 		}, 10, 4 );
+
+		// Provide a filter to output repeater as object instead of array if there's just 1 item.
+		add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) {
+			if ( ! ('repeater' === $field['type'] && is_array($value) && 1 === count($value) ) ) {
+				return $value;
+			}
+
+			$as_array = apply_filters(
+				'ln_endpoints_acf_repeater_as_array',
+				true,
+				Post::ENDPOINT,
+				$post_id,
+				$field
+			);
+
+			return $as_array ? $value : $value[0];
+		}, 10, 4 );
 	}
 }

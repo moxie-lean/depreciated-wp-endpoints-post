@@ -120,6 +120,17 @@ add_filter( 'ln_endpoints_acf_image_size', function( $size, $endpoint, $post_id,
 }, 10, 4 );
 ```
 
+#### ln_endpoints_acf_repeater_as_array
+Whether to return a repeater as an array. Only activated for repeater fields with exactly one value.
+
+```php
+add_filter( 'ln_endpoints_acf_repeater_as_array', function( $as_array, $endpoint, $post_id, $field ) {
+    $post = get_post( $post_id );
+    return 'training' === $post->page_template && 'cta' === $field['name'] ? false : $as_array;
+}, 10, 4 );
+```
+
+
 ### ACF Manipulations
 
 #### Posts
@@ -127,3 +138,6 @@ Activated when the ACF field type is 'Post Object' and the return format is 'id'
 
 #### Images
 Activated when the ACF field type is 'Image' and the return format is 'id'. The image size must be set using the ```ln_endpoints_acf_image_size``` filter. Returns the image url, width, height and alt.
+
+#### Repeaters
+Activated when the ACF field type is 'Repeater' and there is exactly one item. It passes a filter, ```ln_endpoints_acf_repeater_as_array``` which returns an object instead of an array if false.
