@@ -121,6 +121,15 @@ class Content
 		}, 10, 4 );
 	}
 
+	/**
+	 * Do the image size filter.
+	 *
+	 * @param int    $attachment_id Image's id
+	 * @param int    $post_id		Post id
+	 * @param string $field			Field
+	 * @param bool   $sub_field		Sub field (only if it's a repeater)
+	 * @return array
+	 */
 	private static function customize_image( $attachment_id, $post_id, $field, $sub_field = false ) {
 		$size = apply_filters(
 			'ln_endpoints_acf_image_size',
