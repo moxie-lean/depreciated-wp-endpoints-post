@@ -1,6 +1,6 @@
 <?php namespace Leean\Endpoints\Inc;
 
-use Leean\Acf\All as Acf;
+use Leean\Acf;
 
 /**
  * Class Content
@@ -23,6 +23,6 @@ class Content
 			'content' => apply_filters( 'the_content', get_post_field( 'post_content', $post->ID ) ),
 		];
 
-		return array_merge( $data, Acf::get_post_fields( $post->ID, false ) );
+		return array_merge( $data, Acf::get_post_field( $post->ID, false ) );
 	}
 }
