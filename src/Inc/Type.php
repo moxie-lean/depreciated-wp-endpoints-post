@@ -1,11 +1,11 @@
 <?php namespace Leean\Endpoints\Inc;
 
 /**
- * Class Template
+ * Class Type
  *
  * @package Leean\Endpoints\Inc
  */
-class Template
+class Type
 {
 	/**
 	 * Returns the type for the post, the term template applies to what type of

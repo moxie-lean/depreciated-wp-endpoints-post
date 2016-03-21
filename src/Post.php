@@ -1,7 +1,7 @@
 <?php namespace Leean\Endpoints;
 
 use Leean\Endpoints\Inc\Content;
-use Leean\Endpoints\Inc\Template;
+use Leean\Endpoints\Inc\Type;
 
 /**
  * Class to provide activation point for our endpoints.
@@ -35,8 +35,6 @@ class Post
 				]
 			);
 		} );
-
-		Inc\Content::acf_customize();
 	}
 
 	/**
@@ -69,7 +67,7 @@ class Post
 			$data = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
-				'type' => Template::get( $post ),
+				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
 				'meta' => [],
 			];
