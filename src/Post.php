@@ -47,6 +47,11 @@ class Post
 	public static function get_post( \WP_REST_Request $request ) {
 		$slug = $request->get_param( 'slug' );
 
+		if ( '' === trim( $slug, '/' ) ) {
+			$frontpage_id = get_option('page_on_front');
+			$slug = get_post( $frontpage_id )->post_name;
+		}
+
 		$query = new \WP_Query(
 			apply_filters(
 				'ln_endpoints_query_args',
