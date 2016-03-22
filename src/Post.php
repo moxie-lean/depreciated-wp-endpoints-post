@@ -45,7 +45,7 @@ class Post
 	 * @return array|\WP_Error
 	 */
 	public static function get_post( \WP_REST_Request $request ) {
-		$slug = $request->get_param( 'slug' );
+		$slug = trim( $request->get_param( 'slug' ), '/' );
 
 		$query = new \WP_Query(
 			apply_filters(
