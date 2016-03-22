@@ -45,12 +45,7 @@ class Post
 	 * @return array|\WP_Error
 	 */
 	public static function get_post( \WP_REST_Request $request ) {
-		$slug = $request->get_param( 'slug' );
-
-		if ( '' === trim( $slug, '/' ) ) {
-			$frontpage_id = get_option('page_on_front');
-			$slug = get_post( $frontpage_id )->post_name;
-		}
+		$slug = trim( $request->get_param( 'slug' ), '/' );
 
 		$query = new \WP_Query(
 			apply_filters(
