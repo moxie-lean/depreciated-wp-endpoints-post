@@ -59,21 +59,23 @@ class Post
 			)
 		);
 
+		$data = [];
 		if ( $query->have_posts() ) {
 			$query->the_post();
 
 			$post = get_post();
 
-			$data = [
+			$data[] = [
 				'post_id' => get_the_ID(),
 				'slug' => $slug,
 				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
 				'meta' => [],
 			];
+		}
+		wp_reset_postdata();
 
-			wp_reset_postdata();
-
+		if ( ! empty( $data ) ) {
 			return apply_filters(
 				'ln_endpoints_data',
 				$data,
