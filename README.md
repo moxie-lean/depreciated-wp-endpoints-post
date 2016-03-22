@@ -110,9 +110,10 @@ add_filter( 'ln_endpoints_acf', function( $value, $endpoint, $post_id, $field ) 
 
 #### ln_endpoints_acf_image_size
 Set the image size to use. Only activated for image fields whose return format is set to 'id'.
+Note that $sub_field is only used for images within repeaters.
 
 ```php
-add_filter( 'ln_endpoints_acf_image_size', function( $size, $endpoint, $post_id, $field ) {
+add_filter( 'ln_endpoints_acf_image_size', function( $size, $endpoint, $post_id, $field, $sub_field ) {
     if ( 'logo' === $field['name'] ) {
         return 'very_small';
     }
