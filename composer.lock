@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4e38eacea25e181564bcbd8c376121f",
-    "content-hash": "e38454ab35584e655ed18e1325763d6e",
+    "hash": "bf952419c3040d16b27387896c87df0c",
+    "content-hash": "7c84fa1b7131362cf3751bab0a511615",
     "packages": [
         {
             "name": "moxie-leean/wp-acf",
