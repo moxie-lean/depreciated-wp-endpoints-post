@@ -80,7 +80,7 @@ Customise the query args before the post is queried using WP_Query.
 $request is the WP_REST_Request object received by endpoint handler.
 
 ```php
-add_filter( 'ln_endpoints_query_args', function( $query_args, $endpoint, $request ) {
+add_filter( 'ln_endpoints_{endpoint}_query_args', function( $query_args, $request ) {
     $query_args['post_type'] = 'page';
     return $query_args;
 }, 10, 3 );
@@ -90,11 +90,15 @@ add_filter( 'ln_endpoints_query_args', function( $query_args, $endpoint, $reques
 Customise the results just before they are sent.
 
 ```php
-add_filter( 'ln_endpoints_data', function( $data, $endpoint, $post_id ) {
+add_filter( 'ln_endpoints_data_{endpoint}', function( $data, $post_id ) {
     $data['content']['title'] = '***' . $data['content']['title'] . '***';
     return $data;
 }, 10, 3 );
 ```
+
+On the previous two filters `{endpoint}` is the name of your endpoint in
+this case is `post`, so for example `ln_endpoints_data_post` is the name
+of the filter you should use to filter the data.
 
 #### ln_endpoints_acf
 Customise the value of an ACF field.
