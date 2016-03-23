@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bf952419c3040d16b27387896c87df0c",
-    "content-hash": "7c84fa1b7131362cf3751bab0a511615",
+    "hash": "b02d6b23d4a2fd09590ab16912b20aad",
+    "content-hash": "c8aa739c0881e2dcce7daebdbac360d6",
     "packages": [
         {
             "name": "moxie-leean/wp-acf",
-            "version": "dev-master",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-acf.git",
@@ -54,16 +54,16 @@
         },
         {
             "name": "moxie-leean/wp-endpoint",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-endpoint.git",
-                "reference": "330400607ba718eb6b6e17d3e9e51b91bdad44b0"
+                "reference": "f5c9ce42c156f05bac331cb23c85182da4bd2e16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-endpoint/zipball/330400607ba718eb6b6e17d3e9e51b91bdad44b0",
-                "reference": "330400607ba718eb6b6e17d3e9e51b91bdad44b0",
+                "url": "https://api.github.com/repos/moxie-leean/wp-endpoint/zipball/f5c9ce42c156f05bac331cb23c85182da4bd2e16",
+                "reference": "f5c9ce42c156f05bac331cb23c85182da4bd2e16",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +91,7 @@
             ],
             "description": "wp-endpoint",
             "homepage": "https://github.com/moxie-leean/wp-endpoints-post/",
-            "time": "2016-03-22 23:49:25"
+            "time": "2016-03-23 04:32:27"
         }
     ],
     "packages-dev": [
@@ -211,9 +211,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "moxie-leean/wp-acf": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
