@@ -17,7 +17,7 @@ class Post extends AbstractEndpoint {
 	 */
 	protected $endpoint = '/post';
 
-	const QUERY_FILTER = 'ln_endpoints_query_args';
+	const QUERY_FILTER = 'ln_endpoints_%s_query_args';
 	const SLUG_NOT_FOUND = 'ln_slug_not_found';
 
 	/**
@@ -29,7 +29,6 @@ class Post extends AbstractEndpoint {
 	 */
 	public function endpoint_callback( \WP_REST_Request $request ) {
 		$slug = trim( $request->get_param( 'slug' ), '/' );
-		$query_filter_name = self::QUERY_FILTER . $this->filter_format( $this->endpoint );
 		$query_args = [
 			'name' => $slug,
 			'post_type' => 'any',
@@ -37,7 +36,7 @@ class Post extends AbstractEndpoint {
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
 		];
-		$query = new \WP_Query( apply_filters( $query_filter_name, $query_args, $request ) );
+		$query = new \WP_Query( apply_filters( $this->get_query_filter_name(), $query_args, $request ) );
 
 		if ( $query->have_posts() ) {
 			$query->the_post();
@@ -56,6 +55,17 @@ class Post extends AbstractEndpoint {
 			return $this->filter_data( $data, $post->ID );
 		}
 		return new \WP_Error( self::SLUG_NOT_FOUND, 'Nothing found for this slug', [ 'status' => 404 ] );
+	}
+
+	/**
+	 * Makes sure there is no more _ between and after the filter_format
+	 *
+	 * @since 0.2.0
+	 * @return String
+	 */
+	private function get_query_filter_name() {
+		$filter_format = trim( $this->filter_format( $this->endpoint ), '_' );
+		return sprintf( self::QUERY_FILTER, $filter_format );
 	}
 
 	/**
