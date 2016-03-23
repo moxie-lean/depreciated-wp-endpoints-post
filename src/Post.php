@@ -18,6 +18,7 @@ class Post extends AbstractEndpoint {
 	protected $endpoint = '/post';
 
 	const QUERY_FILTER = 'ln_endpoints_query_args';
+	const SLUG_NOT_FOUND = 'ln_slug_not_found';
 
 	/**
 	 * Get the post.
@@ -41,10 +42,10 @@ class Post extends AbstractEndpoint {
 		if ( $query->have_posts() ) {
 			$query->the_post();
 
-			$post = get_post();
+			$post = $query->post;
 
 			$data = [
-				'post_id' => get_the_ID(),
+				'post_id' => $post->ID,
 				'slug' => $slug,
 				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
@@ -52,10 +53,9 @@ class Post extends AbstractEndpoint {
 			];
 
 			wp_reset_postdata();
-			return $this->filter_data( $data, $psot->ID );
+			return $this->filter_data( $data, $post->ID );
 		}
-
-		return new \WP_Error( 'ln_slug_not_found', 'Nothing found for this slug', [ 'status' => 404 ] );
+		return new \WP_Error( self::SLUG_NOT_FOUND, 'Nothing found for this slug', [ 'status' => 404 ] );
 	}
 
 	/**
