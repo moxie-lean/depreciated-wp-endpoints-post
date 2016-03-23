@@ -35,7 +35,7 @@ class Post extends AbstractEndpoint {
 			'post_type' => 'any',
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false
+			'update_post_term_cache' => false,
 		];
 		$query = new \WP_Query( apply_filters( $query_filter_name, $query_args, $request ) );
 
