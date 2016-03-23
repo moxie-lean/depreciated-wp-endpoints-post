@@ -2,40 +2,20 @@
 
 use Leean\Endpoints\Inc\Content;
 use Leean\Endpoints\Inc\Type;
+use Leean\AbstractEndpoint;
 
 /**
  * Class to provide activation point for our endpoints.
  */
-class Post
-{
-	const ENDPOINT = '/post';
+class Post extends AbstractEndpoint {
 
 	/**
-	 * Init.
+	 * Slug for the definition of the post.
+	 *
+	 * @Override
+	 * @var String
 	 */
-	public static function init() {
-		add_action( 'rest_api_init', function () {
-			$namespace = apply_filters( 'ln_endpoints_api_namespace', 'leean', self::ENDPOINT );
-			$version = apply_filters( 'ln_endpoints_api_version', 'v1', self::ENDPOINT );
-
-			register_rest_route(
-				$namespace . '/' . $version,
-				self::ENDPOINT,
-				[
-					'methods' => 'GET',
-					'callback' => [ __CLASS__, 'get_post' ],
-					'args' => [
-						'slug' => [
-							'required' => true,
-							'sanitize_callback' => function ( $param, $request, $key ) {
-								return sanitize_text_field( $param );
-							},
-						],
-					],
-				]
-			);
-		} );
-	}
+	protected $endpoint = '/post';
 
 	/**
 	 * Get the post.
@@ -44,7 +24,7 @@ class Post
 	 *
 	 * @return array|\WP_Error
 	 */
-	public static function get_post( \WP_REST_Request $request ) {
+	public function endpoint_callback( \WP_REST_Request $request ) {
 		$slug = trim( $request->get_param( 'slug' ), '/' );
 
 		$query = new \WP_Query(
@@ -54,7 +34,7 @@ class Post
 					'name' => $slug,
 					'post_type' => 'any',
 				],
-				self::ENDPOINT,
+				$this->endpoint,
 				$request
 			)
 		);
@@ -73,15 +53,25 @@ class Post
 			];
 
 			wp_reset_postdata();
-
-			return apply_filters(
-				'ln_endpoints_data',
-				$data,
-				self::ENDPOINT,
-				$post->ID
-			);
+			return $this->filter_data( $data, $psot->ID );
 		}
 
 		return new \WP_Error( 'ln_slug_not_found', 'Nothing found for this slug', [ 'status' => 404 ] );
+	}
+
+	/**
+	 * Callback used for the endpoint
+	 *
+	 * @since 0.1.0
+	 */
+	public function endpoint_args() {
+		return [
+			'slug' => [
+				'required' => true,
+				'sanitize_callback' => function ( $slug, $request, $key ) {
+					return sanitize_text_field( $slug );
+				},
+			],
+		];
 	}
 }
