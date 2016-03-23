@@ -17,6 +17,8 @@ class Post extends AbstractEndpoint {
 	 */
 	protected $endpoint = '/post';
 
+	const QUERY_FILTER = 'ln_endpoints_query_args';
+
 	/**
 	 * Get the post.
 	 *
@@ -26,18 +28,15 @@ class Post extends AbstractEndpoint {
 	 */
 	public function endpoint_callback( \WP_REST_Request $request ) {
 		$slug = trim( $request->get_param( 'slug' ), '/' );
-
-		$query = new \WP_Query(
-			apply_filters(
-				'ln_endpoints_query_args',
-				[
-					'name' => $slug,
-					'post_type' => 'any',
-				],
-				$this->endpoint,
-				$request
-			)
-		);
+		$query_filter_name = self::QUERY_FILTER . $this->filter_format( $this->endpoint );
+		$query_args = [
+			'name' => $slug,
+			'post_type' => 'any',
+			'no_found_rows' => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false
+		];
+		$query = new \WP_Query( apply_filters( $query_filter_name, $query_args, $request ) );
 
 		if ( $query->have_posts() ) {
 			$query->the_post();
