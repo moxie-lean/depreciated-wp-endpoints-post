@@ -13,7 +13,8 @@
   ],
   "require": {
     "php": ">=5.4",
-    "moxie-leean/wp-acf": "dev-master"
+    "moxie-leean/wp-acf": "dev-master",
+    "moxie-leean/wp-endpoint": "^0.1.0"
   },
   "autoload": {
     "psr-4": {
@@ -22,7 +23,7 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "2.*",
-    "wp-coding-standards/wpcs": "0.9.9"
+    "wp-coding-standards/wpcs": "0.9.0"
   },
   "scripts": {
     "installSniffer": [
@@ -38,4 +39,3 @@
     ]
   }
 }
-
