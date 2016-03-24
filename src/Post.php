@@ -2,40 +2,23 @@
 
 use Leean\Endpoints\Inc\Content;
 use Leean\Endpoints\Inc\Type;
+use Leean\AbstractEndpoint;
 
 /**
  * Class to provide activation point for our endpoints.
  */
-class Post
-{
-	const ENDPOINT = '/post';
+class Post extends AbstractEndpoint {
 
 	/**
-	 * Init.
+	 * Slug for the definition of the post.
+	 *
+	 * @Override
+	 * @var String
 	 */
-	public static function init() {
-		add_action( 'rest_api_init', function () {
-			$namespace = apply_filters( 'ln_endpoints_api_namespace', 'leean', self::ENDPOINT );
-			$version = apply_filters( 'ln_endpoints_api_version', 'v1', self::ENDPOINT );
+	protected $endpoint = '/post';
 
-			register_rest_route(
-				$namespace . '/' . $version,
-				self::ENDPOINT,
-				[
-					'methods' => 'GET',
-					'callback' => [ __CLASS__, 'get_post' ],
-					'args' => [
-						'slug' => [
-							'required' => true,
-							'sanitize_callback' => function ( $param, $request, $key ) {
-								return sanitize_text_field( $param );
-							},
-						],
-					],
-				]
-			);
-		} );
-	}
+	const QUERY_FILTER = 'ln_endpoints_%s_query_args';
+	const SLUG_NOT_FOUND = 'ln_slug_not_found';
 
 	/**
 	 * Get the post.
@@ -44,28 +27,24 @@ class Post
 	 *
 	 * @return array|\WP_Error
 	 */
-	public static function get_post( \WP_REST_Request $request ) {
+	public function endpoint_callback( \WP_REST_Request $request ) {
 		$slug = trim( $request->get_param( 'slug' ), '/' );
-
-		$query = new \WP_Query(
-			apply_filters(
-				'ln_endpoints_query_args',
-				[
-					'name' => $slug,
-					'post_type' => 'any',
-				],
-				self::ENDPOINT,
-				$request
-			)
-		);
+		$query_args = [
+			'name' => $slug,
+			'post_type' => 'any',
+			'no_found_rows' => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		];
+		$query = new \WP_Query( apply_filters( $this->get_query_filter_name(), $query_args, $request ) );
 
 		if ( $query->have_posts() ) {
 			$query->the_post();
 
-			$post = get_post();
+			$post = $query->post;
 
 			$data = [
-				'post_id' => get_the_ID(),
+				'post_id' => $post->ID,
 				'slug' => $slug,
 				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
@@ -73,15 +52,35 @@ class Post
 			];
 
 			wp_reset_postdata();
-
-			return apply_filters(
-				'ln_endpoints_data',
-				$data,
-				self::ENDPOINT,
-				$post->ID
-			);
+			return $this->filter_data( $data, $post->ID );
 		}
+		return new \WP_Error( self::SLUG_NOT_FOUND, 'Nothing found for this slug', [ 'status' => 404 ] );
+	}
 
-		return new \WP_Error( 'ln_slug_not_found', 'Nothing found for this slug', [ 'status' => 404 ] );
+	/**
+	 * Makes sure there is no more _ between and after the filter_format
+	 *
+	 * @since 0.2.0
+	 * @return String
+	 */
+	private function get_query_filter_name() {
+		$filter_format = trim( $this->filter_format( $this->endpoint ), '_' );
+		return sprintf( self::QUERY_FILTER, $filter_format );
+	}
+
+	/**
+	 * Callback used for the endpoint
+	 *
+	 * @since 0.1.0
+	 */
+	public function endpoint_args() {
+		return [
+			'slug' => [
+				'required' => true,
+				'sanitize_callback' => function ( $slug, $request, $key ) {
+					return sanitize_text_field( $slug );
+				},
+			],
+		];
 	}
 }
