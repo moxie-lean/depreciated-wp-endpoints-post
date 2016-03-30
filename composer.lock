@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b02d6b23d4a2fd09590ab16912b20aad",
-    "content-hash": "c8aa739c0881e2dcce7daebdbac360d6",
+    "hash": "b374ef1c77ec55d43ed6e096406eb60a",
+    "content-hash": "fa069b9dd1290581e64565ed328299c4",
     "packages": [
         {
             "name": "moxie-leean/wp-acf",
-            "version": "0.3.0",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-acf.git",
-                "reference": "8154392b82e4db60e90d52c7bbfed8cfcb21e3b0"
+                "reference": "983c1e3e738c41bb1e4aa0d500a27e68812ddb0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-acf/zipball/8154392b82e4db60e90d52c7bbfed8cfcb21e3b0",
-                "reference": "8154392b82e4db60e90d52c7bbfed8cfcb21e3b0",
+                "url": "https://api.github.com/repos/moxie-leean/wp-acf/zipball/983c1e3e738c41bb1e4aa0d500a27e68812ddb0c",
+                "reference": "983c1e3e738c41bb1e4aa0d500a27e68812ddb0c",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
             },
             "require-dev": {
                 "squizlabs/php_codesniffer": "2.*",
-                "wp-coding-standards/wpcs": "dev-master"
+                "wp-coding-standards/wpcs": "0.9.0"
             },
             "type": "library",
             "autoload": {
@@ -42,6 +42,10 @@
                 {
                     "name": "Adam Fenton",
                     "email": "devs@getmoxied.net"
+                },
+                {
+                    "name": "Crisoforo Gaspar",
+                    "email": "devs@getmoxied.net"
                 }
             ],
             "description": "Helper functions for working with Advanced Custom Fields",
@@ -50,7 +54,7 @@
                 "acf",
                 "wordpress"
             ],
-            "time": "2016-03-21 22:36:42"
+            "time": "2016-03-29 17:07:41"
         },
         {
             "name": "moxie-leean/wp-endpoint",
