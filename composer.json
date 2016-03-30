@@ -13,8 +13,8 @@
   ],
   "require": {
     "php": ">=5.4",
-    "moxie-leean/wp-acf": "^0.3.0",
-    "moxie-leean/wp-endpoint": "^0.2.0"
+    "moxie-leean/wp-acf": "0.*.*",
+    "moxie-leean/wp-endpoint": "0.*.*"
   },
   "autoload": {
     "psr-4": {
