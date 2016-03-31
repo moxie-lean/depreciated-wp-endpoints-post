@@ -18,7 +18,10 @@ class Post extends AbstractEndpoint {
 	protected $endpoint = '/post';
 
 	const QUERY_FILTER = 'ln_endpoints_%s_query_args';
-	const SLUG_NOT_FOUND = 'ln_slug_not_found';
+
+	const INVALID_PARAMS = 'ln_invalid_params';
+
+	const NOT_FOUND = 'ln_not_found';
 
 	/**
 	 * Get the post.
@@ -28,14 +31,29 @@ class Post extends AbstractEndpoint {
 	 * @return array|\WP_Error
 	 */
 	public function endpoint_callback( \WP_REST_Request $request ) {
-		$slug = trim( $request->get_param( 'slug' ), '/' );
+		$params = $request->get_params();
+
+		$id = $params['id'];
+
+		$slug = false === $params['slug'] ? false : trim( $params['slug'], '/' );
+
+		if ( false === $id && false === $slug ) {
+			return new \WP_Error( self::INVALID_PARAMS, 'The request must have either an id or a slug', [ 'status' => 400 ] );
+		}
+
 		$query_args = [
-			'name' => $slug,
 			'post_type' => 'any',
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
 		];
+
+		if ( false !== $id ) {
+			$query_args['p'] = $id;
+		} else {
+			$query_args['name'] = $slug;
+		}
+
 		$query = new \WP_Query( apply_filters( $this->get_query_filter_name(), $query_args, $request ) );
 
 		if ( $query->have_posts() ) {
@@ -44,17 +62,19 @@ class Post extends AbstractEndpoint {
 			$post = $query->post;
 
 			$data = [
-				'post_id' => $post->ID,
-				'slug' => $slug,
+				'id' => $post->ID,
+				'slug' => $post->post_name,
 				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
 				'meta' => [],
 			];
 
 			wp_reset_postdata();
+
 			return $this->filter_data( $data, $post->ID );
 		}
-		return new \WP_Error( self::SLUG_NOT_FOUND, 'Nothing found for this slug', [ 'status' => 404 ] );
+
+		return new \WP_Error( self::NOT_FOUND, 'Nothing found for this query', [ 'status' => 404 ] );
 	}
 
 	/**
@@ -75,10 +95,16 @@ class Post extends AbstractEndpoint {
 	 */
 	public function endpoint_args() {
 		return [
+			'id' => [
+				'default' => false,
+				'validate_callback' => function ( $id ) {
+					return false === $id || intval( $id ) > 0;
+				},
+			],
 			'slug' => [
-				'required' => true,
+				'default' => false,
 				'sanitize_callback' => function ( $slug, $request, $key ) {
-					return sanitize_text_field( $slug );
+					return false === $slug ? $slug : sanitize_text_field( $slug );
 				},
 			],
 		];
