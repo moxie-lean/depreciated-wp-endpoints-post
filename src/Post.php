@@ -33,9 +33,9 @@ class Post extends AbstractEndpoint {
 	public function endpoint_callback( \WP_REST_Request $request ) {
 		$params = $request->get_params();
 
-		$id = isset( $params['id'] ) ? $params['id'] : false;
+		$id = $params['id'];
 
-		$slug = isset( $params['slug'] ) ? trim( $params['slug'], '/' ) : false;
+		$slug = false === $params['slug'] ? false : trim( $params['slug'], '/' );
 
 		if ( false === $id && false === $slug ) {
 			return new \WP_Error( self::INVALID_PARAMS, 'The request must have either an id or a slug', [ 'status' => 400 ] );
@@ -74,7 +74,7 @@ class Post extends AbstractEndpoint {
 			return $this->filter_data( $data, $post->ID );
 		}
 
-		return new \WP_Error( self::NOT_FOUND, 'Nothing found for this slug', [ 'status' => 404 ] );
+		return new \WP_Error( self::NOT_FOUND, 'Nothing found for this query', [ 'status' => 404 ] );
 	}
 
 	/**
@@ -96,13 +96,15 @@ class Post extends AbstractEndpoint {
 	public function endpoint_args() {
 		return [
 			'id' => [
+				'default' => false,
 				'validate_callback' => function ( $id ) {
-					return ctype_digit( (string) $id ) && 0 !== (int) $id;
+					return false === $id || ctype_digit( (string) $id ) && 0 !== (int) $id;
 				},
 			],
 			'slug' => [
+				'default' => false,
 				'sanitize_callback' => function ( $slug, $request, $key ) {
-					return sanitize_text_field( $slug );
+					return false === $slug ? $slug : sanitize_text_field( $slug );
 				},
 			],
 		];
