@@ -98,7 +98,7 @@ class Post extends AbstractEndpoint {
 			'id' => [
 				'default' => false,
 				'validate_callback' => function ( $id ) {
-					return false === $id || ctype_digit( (string) $id ) && 0 !== (int) $id;
+					return false === $id || intval( $id ) > 0;
 				},
 			],
 			'slug' => [
