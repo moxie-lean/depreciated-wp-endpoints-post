@@ -3,6 +3,7 @@
 use Leean\Endpoints\Inc\Content;
 use Leean\Endpoints\Inc\Type;
 use Leean\AbstractEndpoint;
+use Lean\Utils;
 
 /**
  * Class to provide activation point for our endpoints.
@@ -66,7 +67,7 @@ class Post extends AbstractEndpoint {
 				'slug' => $post->post_name,
 				'type' => Type::get( $post ),
 				'content' => Content::get( $post ),
-				'meta' => [],
+				'meta' => Utils\Meta::get_all_post_meta( $post ),
 			];
 
 			wp_reset_postdata();
