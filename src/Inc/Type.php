@@ -1,9 +1,9 @@
-<?php namespace Leean\Endpoints\Inc;
+<?php namespace Lean\Endpoints\Inc;
 
 /**
  * Class Type
  *
- * @package Leean\Endpoints\Inc
+ * @package Lean\Endpoints\Inc
  */
 class Type
 {

@@ -4,9 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "785459f0ea61091ede27682982939164",
-    "content-hash": "81eba4703a687c7d338436c7daad2141",
+    "hash": "f07656bd668d9e7732e7c1717f4bc05f",
+    "content-hash": "5a371400f286389b63b1c79c863f7cf1",
     "packages": [
+        {
+            "name": "moxie-lean/wp-acf",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moxie-leean/wp-acf.git",
+                "reference": "15232b3814aa7be8cf01b1d217f75ded1670d7bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moxie-leean/wp-acf/zipball/15232b3814aa7be8cf01b1d217f75ded1670d7bc",
+                "reference": "15232b3814aa7be8cf01b1d217f75ded1670d7bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "2.*",
+                "wp-coding-standards/wpcs": "0.9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lean\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Fenton",
+                    "email": "devs@getmoxied.net"
+                },
+                {
+                    "name": "Crisoforo Gaspar",
+                    "email": "devs@getmoxied.net"
+                }
+            ],
+            "description": "Helper functions for working with Advanced Custom Fields",
+            "homepage": "https://github.com/moxie-leean/wp-acf",
+            "keywords": [
+                "acf",
+                "wordpress"
+            ],
+            "time": "2016-04-24 03:21:52"
+        },
         {
             "name": "moxie-lean/wp-elements",
             "version": "0.2.4",
@@ -52,66 +101,17 @@
             "time": "2016-04-07 16:35:55"
         },
         {
-            "name": "moxie-leean/wp-acf",
-            "version": "0.4.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moxie-leean/wp-acf.git",
-                "reference": "e3c98a72ebc20b84571625d5ed0ff9d5ea5f4492"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-acf/zipball/e3c98a72ebc20b84571625d5ed0ff9d5ea5f4492",
-                "reference": "e3c98a72ebc20b84571625d5ed0ff9d5ea5f4492",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "squizlabs/php_codesniffer": "2.*",
-                "wp-coding-standards/wpcs": "0.9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Leean\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Fenton",
-                    "email": "devs@getmoxied.net"
-                },
-                {
-                    "name": "Crisoforo Gaspar",
-                    "email": "devs@getmoxied.net"
-                }
-            ],
-            "description": "Helper functions for working with Advanced Custom Fields",
-            "homepage": "https://github.com/moxie-leean/wp-acf",
-            "keywords": [
-                "acf",
-                "wordpress"
-            ],
-            "time": "2016-04-05 00:51:32"
-        },
-        {
-            "name": "moxie-leean/wp-endpoint",
-            "version": "0.3.0",
+            "name": "moxie-lean/wp-endpoint",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-endpoint.git",
-                "reference": "2c2bcf680f671022d24160c97bca8115d71b9951"
+                "reference": "a0d57f6cd385a720c2c0d2658d46bb199c65295e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-endpoint/zipball/2c2bcf680f671022d24160c97bca8115d71b9951",
-                "reference": "2c2bcf680f671022d24160c97bca8115d71b9951",
+                "url": "https://api.github.com/repos/moxie-leean/wp-endpoint/zipball/a0d57f6cd385a720c2c0d2658d46bb199c65295e",
+                "reference": "a0d57f6cd385a720c2c0d2658d46bb199c65295e",
                 "shasum": ""
             },
             "require": {
@@ -124,7 +124,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Leean\\": "src/"
+                    "Lean\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -139,25 +139,25 @@
             ],
             "description": "wp-endpoint",
             "homepage": "https://github.com/moxie-leean/wp-endpoints-post/",
-            "time": "2016-04-19 14:24:34"
+            "time": "2016-04-24 03:37:17"
         },
         {
-            "name": "moxie-leean/wp-utils",
-            "version": "0.2.0",
+            "name": "moxie-lean/wp-utils",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-utils.git",
-                "reference": "8e292ff5b8082a324e946db3a5f49f2c69d03a4d"
+                "reference": "8f2b56a9b2beebcb4af9316a18a56c3b6790b301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-utils/zipball/8e292ff5b8082a324e946db3a5f49f2c69d03a4d",
-                "reference": "8e292ff5b8082a324e946db3a5f49f2c69d03a4d",
+                "url": "https://api.github.com/repos/moxie-leean/wp-utils/zipball/8f2b56a9b2beebcb4af9316a18a56c3b6790b301",
+                "reference": "8f2b56a9b2beebcb4af9316a18a56c3b6790b301",
                 "shasum": ""
             },
             "require": {
+                "moxie-lean/wp-acf": "1.*.*",
                 "moxie-lean/wp-elements": "0.*.*",
-                "moxie-leean/wp-acf": "0.*.*",
                 "php": ">=5.4"
             },
             "require-dev": {
@@ -189,7 +189,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2016-04-19 22:49:14"
+            "time": "2016-04-25 00:24:23"
         }
     ],
     "packages-dev": [

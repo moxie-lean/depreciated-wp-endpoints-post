@@ -1,5 +1,5 @@
 {
-  "name": "moxie-leean/wp-endpoints-post",
+  "name": "moxie-lean/wp-endpoints-post",
   "description": "Generic but customisable post endpoint to expose post content via WP-API",
   "keywords": ["wordpress", "api"],
   "homepage": "https://github.com/moxie-leean/wp-endpoints-post",
@@ -13,13 +13,13 @@
   ],
   "require": {
     "php": ">=5.4",
-    "moxie-leean/wp-acf": "0.*.*",
-    "moxie-leean/wp-endpoint": "0.*.*",
-    "moxie-leean/wp-utils": "0.*.*"
+    "moxie-lean/wp-acf": "1.*.*",
+    "moxie-lean/wp-endpoint": "1.*.*",
+    "moxie-lean/wp-utils": "1.*.*"
   },
   "autoload": {
     "psr-4": {
-      "Leean\\Endpoints\\": "src/"
+      "Lean\\Endpoints\\": "src/"
     }
   },
   "require-dev": {

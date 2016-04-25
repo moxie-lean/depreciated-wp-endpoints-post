@@ -1,8 +1,8 @@
-<?php namespace Leean\Endpoints;
+<?php namespace Lean\Endpoints;
 
-use Leean\Endpoints\Inc\Content;
-use Leean\Endpoints\Inc\Type;
-use Leean\AbstractEndpoint;
+use Lean\Endpoints\Inc\Content;
+use Lean\Endpoints\Inc\Type;
+use Lean\AbstractEndpoint;
 use Lean\Utils\Meta;
 
 /**

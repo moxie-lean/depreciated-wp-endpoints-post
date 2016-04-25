@@ -1,11 +1,11 @@
-<?php namespace Leean\Endpoints\Inc;
+<?php namespace Lean\Endpoints\Inc;
 
-use Leean\Acf;
+use Lean\Acf;
 
 /**
  * Class Content
  *
- * @package Leean\Endpoints\Inc
+ * @package Lean\Endpoints\Inc
  */
 class Content
 {
