@@ -18,18 +18,18 @@ Note: currently it just works for single posts (including pages and cpt's). We n
 The easiest way to install this package is by using composer from your terminal:
 
 ```bash
-composer require moxie-leean/wp-endpoints-view --save
+composer require moxie-lean/wp-endpoints-view --save
 ```
 
 Or by adding the following lines on your `composer.json` file
 
 ```json
 "require": {
-  "moxie-leean/wp-endpoints-view": "dev-master"
+  "moxie-lean/wp-endpoints-view": "dev-master"
 }
 ```
 
-This will download the files from the [packagist site](https://packagist.org/packages/moxie-leean/wp-endpoints-view) 
+This will download the files from the [packagist site](https://packagist.org/packages/moxie-lean/wp-endpoints-view) 
 and set you up with the latest version located on master branch of the repository. 
 
 After that you can include the `autoload.php` file in order to
@@ -42,7 +42,7 @@ include '/vendor/autoload.php';
 Finally you need to initialise the endpoint by adding this to your code:
 
 ```php
-\Leean\Endpoints\View::init();
+\Lean\Endpoints\View::init();
 ```
 
 ## Usage
