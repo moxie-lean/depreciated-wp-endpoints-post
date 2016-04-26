@@ -58,16 +58,16 @@
         },
         {
             "name": "moxie-lean/wp-elements",
-            "version": "0.2.4",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-elements.git",
-                "reference": "337641bcb91e0f952a3796ecccddae6981158317"
+                "reference": "d6fb069c1505f115e2d6bc3cf942f8969e5e515b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-elements/zipball/337641bcb91e0f952a3796ecccddae6981158317",
-                "reference": "337641bcb91e0f952a3796ecccddae6981158317",
+                "url": "https://api.github.com/repos/moxie-leean/wp-elements/zipball/d6fb069c1505f115e2d6bc3cf942f8969e5e515b",
+                "reference": "d6fb069c1505f115e2d6bc3cf942f8969e5e515b",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2016-04-07 16:35:55"
+            "time": "2016-04-25 19:22:28"
         },
         {
             "name": "moxie-lean/wp-endpoint",
@@ -143,16 +143,16 @@
         },
         {
             "name": "moxie-lean/wp-utils",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moxie-leean/wp-utils.git",
-                "reference": "8f2b56a9b2beebcb4af9316a18a56c3b6790b301"
+                "reference": "be4f0294b30054c63d02a9cae06eea5ea5a58670"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-utils/zipball/8f2b56a9b2beebcb4af9316a18a56c3b6790b301",
-                "reference": "8f2b56a9b2beebcb4af9316a18a56c3b6790b301",
+                "url": "https://api.github.com/repos/moxie-leean/wp-utils/zipball/be4f0294b30054c63d02a9cae06eea5ea5a58670",
+                "reference": "be4f0294b30054c63d02a9cae06eea5ea5a58670",
                 "shasum": ""
             },
             "require": {
@@ -189,7 +189,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2016-04-25 00:24:23"
+            "time": "2016-04-26 23:20:36"
         }
     ],
     "packages-dev": [
