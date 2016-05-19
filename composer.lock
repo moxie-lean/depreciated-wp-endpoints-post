@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f07656bd668d9e7732e7c1717f4bc05f",
+    "hash": "3ca6dcb0846a556146c14273cd710f8b",
     "content-hash": "5a371400f286389b63b1c79c863f7cf1",
     "packages": [
         {
@@ -12,12 +12,12 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moxie-leean/wp-acf.git",
+                "url": "https://github.com/moxie-lean/wp-acf.git",
                 "reference": "15232b3814aa7be8cf01b1d217f75ded1670d7bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-acf/zipball/15232b3814aa7be8cf01b1d217f75ded1670d7bc",
+                "url": "https://api.github.com/repos/moxie-lean/wp-acf/zipball/15232b3814aa7be8cf01b1d217f75ded1670d7bc",
                 "reference": "15232b3814aa7be8cf01b1d217f75ded1670d7bc",
                 "shasum": ""
             },
@@ -58,16 +58,16 @@
         },
         {
             "name": "moxie-lean/wp-elements",
-            "version": "0.3.0",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moxie-leean/wp-elements.git",
-                "reference": "d6fb069c1505f115e2d6bc3cf942f8969e5e515b"
+                "url": "https://github.com/moxie-lean/wp-elements.git",
+                "reference": "27357d198faa0ebf30008a47c0d771bfa7d3a6b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-elements/zipball/d6fb069c1505f115e2d6bc3cf942f8969e5e515b",
-                "reference": "d6fb069c1505f115e2d6bc3cf942f8969e5e515b",
+                "url": "https://api.github.com/repos/moxie-lean/wp-elements/zipball/27357d198faa0ebf30008a47c0d771bfa7d3a6b3",
+                "reference": "27357d198faa0ebf30008a47c0d771bfa7d3a6b3",
                 "shasum": ""
             },
             "require": {
@@ -98,19 +98,19 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2016-04-25 19:22:28"
+            "time": "2016-05-10 17:02:23"
         },
         {
             "name": "moxie-lean/wp-endpoint",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moxie-leean/wp-endpoint.git",
+                "url": "https://github.com/moxie-lean/wp-endpoint.git",
                 "reference": "a0d57f6cd385a720c2c0d2658d46bb199c65295e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-endpoint/zipball/a0d57f6cd385a720c2c0d2658d46bb199c65295e",
+                "url": "https://api.github.com/repos/moxie-lean/wp-endpoint/zipball/a0d57f6cd385a720c2c0d2658d46bb199c65295e",
                 "reference": "a0d57f6cd385a720c2c0d2658d46bb199c65295e",
                 "shasum": ""
             },
@@ -146,12 +146,12 @@
             "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moxie-leean/wp-utils.git",
+                "url": "https://github.com/moxie-lean/wp-utils.git",
                 "reference": "be4f0294b30054c63d02a9cae06eea5ea5a58670"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moxie-leean/wp-utils/zipball/be4f0294b30054c63d02a9cae06eea5ea5a58670",
+                "url": "https://api.github.com/repos/moxie-lean/wp-utils/zipball/be4f0294b30054c63d02a9cae06eea5ea5a58670",
                 "reference": "be4f0294b30054c63d02a9cae06eea5ea5a58670",
                 "shasum": ""
             },
