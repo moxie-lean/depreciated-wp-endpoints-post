@@ -2,7 +2,7 @@
   "name": "moxie-lean/wp-endpoints-post",
   "description": "Generic but customisable post endpoint to expose post content via WP-API",
   "keywords": ["wordpress", "api"],
-  "homepage": "https://github.com/moxie-leean/wp-endpoints-post",
+  "homepage": "https://github.com/moxie-lean/wp-endpoints-post",
   "type": "library",
   "license": "MIT",
   "authors": [
